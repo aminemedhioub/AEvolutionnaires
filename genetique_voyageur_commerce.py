@@ -53,16 +53,17 @@ def selection_par_roulette(population, fitness):
 
 
 def selection_par_rang(population, fitness):
-    individus_tries = [x for _, x in sorted(zip(fitness, population), reverse=True)]
+
+    individus_tries = [x for _, x in sorted(zip(fitness, population))]
     n = len(individus_tries)
     somme_rangs = n * (n + 1) / 2
     cumul = 0
     r = random.random()
-    for rang, indiv in enumerate(individus_tries, start=1):
+    for idx, indiv in enumerate(individus_tries):
+        rang = idx + 1
         cumul += rang / somme_rangs
         if r <= cumul:
             return indiv
-
 
 
 def croisement_simple_point(parent1, parent2):
